@@ -2,49 +2,66 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 public class movement : MonoBehaviour
 {
     public NavMeshAgent agent;
-    private bool secili = false;
-    private Vector3 hedefPozisyon;
-    
-    
-  
-    void Update()
+    private bool isSelected = false;
+    private Vector3 targetPosition;
+    public static movement instance;
+
+    private static movement[] allCapsules;
+    void Start()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            
-            Ray movePosition = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if(Physics.Raycast(movePosition, out var hitInfo)){
-                 if (!secili)
-                {
-                    // Eğer tıklanan nesne bu scriptin bağlı olduğu nesne ise karakteri seç
-                    if (hitInfo.collider.gameObject == gameObject )
-                    {
-                        secili = true;
-                    }
-                }
-                else
-                {
-                    // Seçili karaktere tıklanan yere gitmesini söyle
-                    if (hitInfo.collider.gameObject == gameObject)
-                    {
-                        // Seçili karakterin hedef pozisyonunu sıfırlayarak hareketini durdurma
-                        agent.SetDestination(transform.position);
-                    }
-                    else
-                    {
-                        // Diğer karakterlere tıklandığında, seçili karakteri tıklanan yere hareket ettirme
-                        hedefPozisyon = hitInfo.point;
-                        agent.SetDestination(hedefPozisyon);
-                    }
-                }
-                
-            }
-           
-        }
+
+        agent = GetComponent<NavMeshAgent>();
+
+        // Get references to all the capsules in the scene
+        allCapsules = FindObjectsOfType<movement>();
 
     }
+
+    void Awake()
+    {
+        instance = this;
+    }
+    void Update()
+    {
+        if (isSelected)
+        {
+            // If a capsule is selected, move it to the clicked position
+            if (isSelected &&Input.GetMouseButtonDown(0))
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out var hitInfo))
+                {
+                    targetPosition = hitInfo.point;
+                    agent.SetDestination(targetPosition);
+                }
+            }
+        }
+        else
+        {
+            // If no capsule is selected, check if a capsule is clicked and select it
+            if (!isSelected &&Input.GetMouseButtonDown(0))
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out var hitInfo))
+                {
+                    if (hitInfo.collider.gameObject == gameObject)
+                    {
+                        // Deselect all other capsules and select the current one
+                        foreach (movement capsule in allCapsules)
+                        {
+                            if (capsule != this)
+                                capsule.isSelected = false;
+                        }
+                        isSelected = true;
+                    }
+                }
+            }
+        }
+    }
+
 }
