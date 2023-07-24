@@ -10,13 +10,10 @@ public class movement : MonoBehaviour
     private bool isSelected = false;
     private Vector3 targetPosition;
     public static movement instance;
-
     private static movement[] allCapsules;
     void Start()
     {
-
         agent = GetComponent<NavMeshAgent>();
-
         // Get references to all the capsules in the scene
         allCapsules = FindObjectsOfType<movement>();
 
@@ -26,12 +23,13 @@ public class movement : MonoBehaviour
     {
         instance = this;
     }
+
     void Update()
     {
         if (isSelected)
         {
             // If a capsule is selected, move it to the clicked position
-            if (isSelected &&Input.GetMouseButtonDown(0))
+            if (isSelected && Input.GetMouseButtonDown(1))
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(ray, out var hitInfo))
@@ -44,7 +42,7 @@ public class movement : MonoBehaviour
         else
         {
             // If no capsule is selected, check if a capsule is clicked and select it
-            if (!isSelected &&Input.GetMouseButtonDown(0))
+            if (!isSelected && Input.GetMouseButtonDown(0))
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(ray, out var hitInfo))
@@ -61,7 +59,8 @@ public class movement : MonoBehaviour
                     }
                 }
             }
+            
         }
     }
-
+    
 }
