@@ -12,15 +12,12 @@ public class movement : MonoBehaviour
     public static movement instance;
     private static movement[] allCapsules;
 
-    private PlaneColliderController planeColliderController;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         // Get references to all the capsules in the scene
         allCapsules = FindObjectsOfType<movement>();
-        planeColliderController = FindObjectOfType<PlaneColliderController>();
     
-
     }
 
     void Awake()
@@ -39,11 +36,9 @@ public class movement : MonoBehaviour
                 if (Physics.Raycast(ray, out var hitInfo))
                 {
                     // Check if the plane's collider is occupied by another object
-                    if (!planeColliderController.IsOccupied())
-                    {
                         targetPosition = hitInfo.point;
                         agent.SetDestination(targetPosition);
-                    }
+                    
                 }
             }
         }
@@ -71,20 +66,5 @@ public class movement : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (isSelected && other.gameObject.CompareTag("Capsule"))
-        {
-            planeColliderController.SetOccupied(true);
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (isSelected && other.gameObject.CompareTag("Capsule"))
-        {
-            planeColliderController.SetOccupied(false);
-        }
-    }
     
 }
