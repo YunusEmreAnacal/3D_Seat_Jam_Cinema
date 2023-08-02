@@ -784,7 +784,7 @@ PlayerSettings:
     Purchasing: 0
     UDP: 0
     UNet: 1
-    Unity Ads: 0
+    Unity Ads: 1
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -799,11 +799,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 
+  cloudProjectId: 0c62434a-1435-43ac-87ef-435b1b671917
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: Seat_Jam_Cinema
+  organizationId: yunusanacal61
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 
