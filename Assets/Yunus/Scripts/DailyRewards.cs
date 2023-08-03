@@ -23,6 +23,7 @@ namespace DailyRewardSystem
         [Header("Main Menu UI")]
 
         [SerializeField] Text coinsText;
+        [SerializeField] Text coinsText2;
 
 
         [Space]
@@ -178,6 +179,7 @@ namespace DailyRewardSystem
         void UpdateCoinsTextUI()
         {
             coinsText.text = GameData.Coins.ToString();
+            coinsText2.text = GameData.Coins.ToString();
         }
 
 
