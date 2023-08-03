@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab2801d75b8b3fc4897922501b6a7280, type: 3}
+  m_Name: Shop_item_db
+  m_EditorClassIdentifier: 
+  items:
+  - image: {fileID: 21300000, guid: 519e049cda1c435499eebd1d97d741c2, type: 3}
+    name: "1.\xFCr\xFCn"
+    price: 0
+    isPurchased: 1
+  - image: {fileID: 21300000, guid: 20b2b10a1d8a3a948a3f0ee8aa9b0f66, type: 3}
+    name: "2. \xFCr\xFCn"
+    price: 2500
+    isPurchased: 0
+  - image: {fileID: 21300000, guid: fbc2e6b17773c9f4c93e7deff4b6a98a, type: 3}
+    name: "3. \xFCr\xFCn"
+    price: 5000
+    isPurchased: 0
+  - image: {fileID: 21300000, guid: 528724731d2a00a41a36da09d74a9e02, type: 3}
+    name: "4. \xFCr\xFCn"
+    price: 10000
+    isPurchased: 0
+  - image: {fileID: 21300000, guid: 5840efc7c24837e4ba77574e8d1e10ea, type: 3}
+    name: "5. \xFCr\xFCn"
+    price: 25000
+    isPurchased: 0
